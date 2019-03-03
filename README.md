@@ -3,6 +3,8 @@ Hibernate Advanced Mappings
 
 Progress:
 
-> One-to-One
+> One-to-One BI Direct
+
+> Exception handling
 
 > . . .

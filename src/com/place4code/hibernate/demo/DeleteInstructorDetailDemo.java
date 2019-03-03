@@ -26,9 +26,13 @@ public class DeleteInstructorDetailDemo {
 			//start transaction
 			session.beginTransaction();
 
-			InstructorDetail temp = session.get(InstructorDetail.class, 2); //id = 2 
+			InstructorDetail temp = session.get(InstructorDetail.class, 4); //id = 4 
 			System.out.println("temp: " + temp);
 			System.out.println("the associated object: " + temp.getInstructor());
+			
+			//when i will delete only InstructorDetail from database
+			//remove associated object reference, break bi link
+			temp.getInstructor().setInstructorDetail(null);
 			
 			System.out.println("deleting...");
 			session.delete(temp);
