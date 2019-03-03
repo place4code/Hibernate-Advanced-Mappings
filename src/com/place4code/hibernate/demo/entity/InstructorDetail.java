@@ -1,10 +1,12 @@
 package com.place4code.hibernate.demo.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 //annotate the class as entity and map to db
@@ -24,6 +26,11 @@ public class InstructorDetail {
 	
 	@Column(name="hobby")
 	private String hobby;
+	
+	//BI-direction
+	//look at the instructorDetail property in the Instructor class:
+	@OneToOne(mappedBy="instructorDetail", cascade=CascadeType.ALL) 
+	private Instructor instructor;
 
 	//create constructor
 	public InstructorDetail() {}
@@ -50,6 +57,12 @@ public class InstructorDetail {
 	}
 	public void setHobby(String hobby) {
 		this.hobby = hobby;
+	}
+	public Instructor getInstructor() {
+		return instructor;
+	}
+	public void setInstructor(Instructor instructor) {
+		this.instructor = instructor;
 	}
 	
 	//generate toString method
