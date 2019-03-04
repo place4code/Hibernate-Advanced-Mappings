@@ -9,4 +9,6 @@ Progress:
 
 > One-to-Many
 
+> Eager vs. Lazy loading
+
 > . . .
