@@ -7,6 +7,7 @@ import org.hibernate.cfg.Configuration;
 import com.place4code.hibernate.demo.entity.Course;
 import com.place4code.hibernate.demo.entity.Instructor;
 import com.place4code.hibernate.demo.entity.InstructorDetail;
+import com.place4code.hibernate.demo.entity.Review;
 
 public class CreateCoursesDemo {
 
@@ -18,6 +19,7 @@ public class CreateCoursesDemo {
 				.addAnnotatedClass(Instructor.class)
 				.addAnnotatedClass(InstructorDetail.class)
 				.addAnnotatedClass(Course.class)
+				.addAnnotatedClass(Review.class)
 				.buildSessionFactory();
 		
 		//create a session
@@ -27,12 +29,18 @@ public class CreateCoursesDemo {
 			//start transaction
 			session.beginTransaction();
 
-			//get a course
-			Course temp = session.get(Course.class, 10); // 10 = id for e.g.
-			
-			//delete this course
-			session.delete(temp);
-			
+			//create a course
+			Course temp = new Course("Pacman");
+			//add some reviews
+			temp.addReview(new Review("rewiew1"));
+			temp.addReview(new Review("rewiew2"));
+			temp.addReview(new Review("rewiew3"));
+			temp.addReview(new Review("rewiew4"));
+			//save
+			System.out.println("saving..." + temp);
+			session.save(temp);
+			//show reviews
+			System.out.println(temp.getReviews());
 			//commit transaction
 			session.getTransaction().commit();
 			System.out.println("Done!");
